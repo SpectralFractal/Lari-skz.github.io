@@ -3,7 +3,7 @@ async function getRecipes(ingredients) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer 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'
+      'Authorization': 'Bearer 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'
     },
     body: JSON.stringify({
       prompt: `Lista de ingrediente: ${ingredients.join(', ')}. Oferă o listă de posibile rețete folosind aceste ingrediente.`,
