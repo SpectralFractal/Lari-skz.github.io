@@ -1,4 +1,8 @@
 async function getRecipes(ingredients) {
+  if (!ingredients || ingredients.length === 0) {
+    return [];
+  }
+
   const response = await fetch('https://foodcombatchatgpt.herokuapp.com/getRecipes', {
     method: 'POST',
     headers: {
@@ -10,7 +14,7 @@ async function getRecipes(ingredients) {
   });
 
   const data = await response.json();
-  return data.recipes;
+  return data;
 }
 
 document.getElementById('ingredients-form').addEventListener('submit', async (event) => {
