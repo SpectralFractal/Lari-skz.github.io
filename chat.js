@@ -24,5 +24,5 @@ document.getElementById('ingredients-form').addEventListener('submit', async (ev
   const recipes = await getRecipes(ingredients);
 
   const recipesContainer = document.getElementById('recipes-container');
-  recipesContainer.innerHTML =  recipes.map(recipe => `${recipe}`).join('') ;
+ recipesContainer.innerHTML = recipes.map(recipe => `<p>${recipe}</p>`).join('');
 });
