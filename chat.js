@@ -3,7 +3,7 @@ async function getRecipes(ingredients) {
     return [];
   }
 
-const response = await fetch('https://foodcombat-ea00e6c8cd2a.herokuapp.com/getRecipes', {
+  const response = await fetch('https://foodcombat-ea00e6c8cd2a.herokuapp.com/getRecipes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -14,10 +14,12 @@ const response = await fetch('https://foodcombat-ea00e6c8cd2a.herokuapp.com/getR
   });
 
   const data = await response.json();
+
+  console.log('API Response:', data);
+  
   return data;
 }
 
-// Asteapta sa dam click pe butonul "trimite". Asata se numeste eveniment
 // Event listener for form submission
 document.getElementById('ingredients-form').addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -27,7 +29,6 @@ document.getElementById('ingredients-form').addEventListener('submit', async (ev
   const recipes = Object.values(recipesResponse)[0]
   const recipesContainer = document.getElementById('recipes-container');
   recipesContainer.innerHTML = recipes.map(recipe => 
-    <p>${recipe.replace(/\n/g, '<br>')}</p> // Replace newline characters with <br> tags for HTML
-  ).join('');
+    `<p>${recipe.replace(/\n/g, '<br>')}</p>` // Replace newline characters with <br> tags for HTML
+  ).join('');
 });
-
