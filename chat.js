@@ -3,7 +3,7 @@ async function getRecipes(ingredients) {
     return [];
   }
 
-  const response = await fetch('https://foodcombatchatgpt.herokuapp.com/getRecipes', {
+const response = await fetch('https://foodcombat-ea00e6c8cd2a.herokuapp.com/getRecipes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -18,17 +18,18 @@ async function getRecipes(ingredients) {
 }
 
 // Asteapta sa dam click pe butonul "trimite". Asata se numeste eveniment
+// Event listener for form submission
 document.getElementById('ingredients-form').addEventListener('submit', async (event) => {
-  //Nu da refresh la pagina, asa ca lista de ingrediente ramane in text box
   event.preventDefault();
-  //variabila ingredientsInput contine tot ceea ce scriem in text box
   const ingredientsInput = document.getElementById('ingredients-input');
-  // variabila ingredients(e vector sau lista defapt) desparte cuvintele din lista dupa virgula, iar map scoate caraterele
-  // spatiu din elementele vectorului
   const ingredients = ingredientsInput.value.split(',').map(ingredient => ingredient.trim());
-  //variabila recipes contine raspunsul primit de la serverul de node.js.
-  // e o lista cu retete
-  const recipes = await getRecipes(ingredients);
+  const recipesResponse = await getRecipes(ingredients);
+  const recipes = Object.values(recipesResponse)[0]
+  const recipesContainer = document.getElementById('recipes-container');
+  recipesContainer.innerHTML = recipes.map(recipe => 
+    <p>${recipe.replace(/\n/g, '<br>')}</p> // Replace newline characters with <br> tags for HTML
+  ).join('');
+});
 
   // Tot codul de mai jos se ocupa de modul in care retetele sunt afisate in browser(la client, la mine pe pc)
   // fiecare reteta e adaugata intr-un tag <p></p> 
