@@ -31,9 +31,3 @@ document.getElementById('ingredients-form').addEventListener('submit', async (ev
   ).join('');
 });
 
-  // Tot codul de mai jos se ocupa de modul in care retetele sunt afisate in browser(la client, la mine pe pc)
-  // fiecare reteta e adaugata intr-un tag <p></p> 
-  // se creaza un singur sir de caractere [asta face join('') ]
-  const recipesContainer = document.getElementById('recipes-container');
- recipesContainer.innerHTML = recipes.map(recipe => `<p>${recipe}</p>`).join('');
-});
